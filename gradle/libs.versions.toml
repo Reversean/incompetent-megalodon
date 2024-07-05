@@ -1,0 +1,18 @@
+[versions]
+kotlin = "2.0.20-Beta1"
+spring-boot = "3.3.2-SNAPSHOT"
+lombok = "8.0.1"
+junit = "5.11.0-M2"
+testcontainers = "1.19.8"
+kotest = "5.9.1"
+
+[libraries]
+kotlin-gradle = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
+spring-boot-gradle = { group = "org.springframework.boot", name = "spring-boot-gradle-plugin", version.ref = "spring-boot" }
+junit-bom = { group = "org.junit", name = "junit-bom", version.ref = "junit" }
+testcontainers-bom = { group = "org.testcontainers", name = "testcontainers-bom", version.ref = "testcontainers" }
+
+[bundles]
+
+[plugins]
+lombok = { id = "io.freefair.lombok", version.ref = "lombok" }
