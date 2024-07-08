@@ -1,0 +1,11 @@
+spring:
+  datasource:
+    url: ${SYSTEM_DATABASE_URL:jdbc:postgresql://localhost:15432/system_db}
+    username: ${SYSTEM_DATABASE_USERNAME:postgres}
+    password: ${SYSTEM_DATABASE_PASSWORD:postgres}
+    project:
+      url: ${PROJECT_DATABASE_URL:jdbc:postgresql://localhost:15432/project_db}
+      username: ${PROJECT_DATABASE_USERNAME:postgres}
+      password: ${PROJECT_DATABASE_PASSWORD:postgres}
+  liquibase:
+    change-log: classpath:/db/changelog/master.yml

@@ -5,14 +5,10 @@ plugins {
 }
 
 dependencies {
-//    implementation(libs.spring.boot.web)
+    implementation(project(":common:core"))
+    implementation(project(":bi-tools:service"))
 }
 
 dependencies {
     testImplementation(libs.bundles.kotest)
-}
-
-tasks.register("pluginList") {
-    logger.lifecycle("Applied plugins:")
-    plugins.forEach { println(it) }
 }

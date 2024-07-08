@@ -1,0 +1,7 @@
+databaseChangeLog:
+  - includeAll:
+      path: db/changelog/modules/*
+      errorIfMissingOrEmpty: false
+  - includeAll:
+      path: db/changelog/app/*
+      errorIfMissingOrEmpty: false
