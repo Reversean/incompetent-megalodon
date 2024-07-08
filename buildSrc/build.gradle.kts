@@ -11,6 +11,9 @@ repositories {
 }
 
 dependencies {
-    implementation(libs.kotlin.gradle)
-//    implementation(libs.spring.boot.gradle)
+    implementation(libs.gradle.kotlin)
+    implementation(libs.gradle.kotlin.spring)
+    implementation(libs.gradle.kotlin.jpa)
+    implementation(libs.gradle.spring.boot)
+    implementation(libs.gradle.lombok)
 }

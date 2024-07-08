@@ -1,8 +1,18 @@
 plugins {
     id("java-conventions")
-//    id("spring-conventions")
+    id("kotlin-conventions")
+    id("spring-conventions")
 }
 
-//dependencies {
-//    testImplementation(libs.kotest.assertions.core)
-//}
+dependencies {
+//    implementation(libs.spring.boot.web)
+}
+
+dependencies {
+    testImplementation(libs.bundles.kotest)
+}
+
+tasks.register("pluginList") {
+    logger.lifecycle("Applied plugins:")
+    plugins.forEach { println(it) }
+}

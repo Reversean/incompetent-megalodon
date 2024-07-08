@@ -1,5 +1,7 @@
 plugins {
     java
+
+    id("io.freefair.lombok")
 }
 
 java {
@@ -13,13 +15,17 @@ repositories {
 }
 
 dependencies {
-    testImplementation(platform(library("junit-bom")))
+    withLibrary("bom-junit") {
+        testImplementation(platform(it))
+    }
     testImplementation("org.junit.jupiter:junit-jupiter")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
 
 dependencies {
-    testImplementation(platform(library("testcontainers-bom")))
+    withLibrary("bom-testcontainers") {
+        testImplementation(platform(it))
+    }
     testImplementation("org.testcontainers:junit-jupiter")
 }
 

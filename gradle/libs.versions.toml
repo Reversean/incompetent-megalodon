@@ -1,18 +1,39 @@
 [versions]
 kotlin = "2.0.20-Beta1"
-spring-boot = "3.3.2-SNAPSHOT"
-lombok = "8.0.1"
+spring-boot = "3.3.1"
+lombok = "8.6"
 junit = "5.11.0-M2"
 testcontainers = "1.19.8"
 kotest = "5.9.1"
 
+
 [libraries]
-kotlin-gradle = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
-spring-boot-gradle = { group = "org.springframework.boot", name = "spring-boot-gradle-plugin", version.ref = "spring-boot" }
-junit-bom = { group = "org.junit", name = "junit-bom", version.ref = "junit" }
-testcontainers-bom = { group = "org.testcontainers", name = "testcontainers-bom", version.ref = "testcontainers" }
+
+gradle-kotlin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
+gradle-kotlin-spring = { group = "org.jetbrains.kotlin.plugin.spring", name = "org.jetbrains.kotlin.plugin.spring.gradle.plugin", version.ref = "kotlin" }
+gradle-kotlin-jpa = { group = "org.jetbrains.kotlin.plugin.jpa", name = "org.jetbrains.kotlin.plugin.jpa.gradle.plugin", version.ref = "kotlin" }
+gradle-spring-boot = { group = "org.springframework.boot", name = "spring-boot-gradle-plugin", version.ref = "spring-boot" }
+gradle-lombok = { group = "io.freefair.lombok", name = "io.freefair.lombok.gradle.plugin", version.ref = "lombok" }
+
+bom-junit = { group = "org.junit", name = "junit-bom", version.ref = "junit" }
+bom-testcontainers = { group = "org.testcontainers", name = "testcontainers-bom", version.ref = "testcontainers" }
+
+spring-boot-web = { group = "org.springframework.boot", name = "spring-boot-starter-web" }
+spring-boot-webflux = { group = "org.springframework.boot", name = "spring-boot-starter-webflux" }
+spring-boot-jpa = { group = "org.springframework.boot", name = "spring-boot-starter-data-jpa" }
+spring-boot-jooq = { group = "org.springframework.boot", name = "spring-boot-starter-jooq" }
+
+liquibase = { group = "org.liquibase", name = "liquibase-core" }
+
+kotest-assertions-core = { group = "io.kotest", name = "kotest-assertions-core-jvm", version.ref = "kotest" }
+
+mockito-kotlin = { group = "org.mockito.kotlin", name = "mockito-kotlin", version = "5.3.1" }
+
 
 [bundles]
+spring-boot = ["spring-boot-web", "spring-boot-jpa"]
+kotest = ["kotest-assertions-core"]
+
 
 [plugins]
 lombok = { id = "io.freefair.lombok", version.ref = "lombok" }
