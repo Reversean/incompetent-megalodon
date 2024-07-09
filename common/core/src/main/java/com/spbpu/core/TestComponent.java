@@ -17,7 +17,7 @@ public class TestComponent {
 
     @PostConstruct
     void init() {
-        log.info("Primary data source URL: {}", dataSource);
-        log.info("Project data source URL: {}", projectDataSource);
+        log.info("Primary data source {}", dataSource);
+        log.info("Project data source: {}", projectDataSource);
     }
 }

@@ -6,7 +6,11 @@ plugins {
 
 dependencies {
     implementation(project(":common:core"))
-    implementation(project(":bi-tools:service"))
+//    implementation(project(":bi-tools:service"))
+}
+
+dependencies {
+    implementation(libs.spring.boot.docker.compose)
 }
 
 dependencies {
