@@ -15,6 +15,7 @@ repositories {
 
 dependencies {
     implementation(platform(kotlin("bom")))
+    implementation(kotlin("reflect"))
 }
 
 dependencies {

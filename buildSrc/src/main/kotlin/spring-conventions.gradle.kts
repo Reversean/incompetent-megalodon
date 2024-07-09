@@ -16,11 +16,12 @@ repositories {
 
 dependencies {
     implementation(platform(SpringBootPlugin.BOM_COORDINATES))
-    implementation("org.springframework.boot:spring-boot-starter")
-}
 
-dependencies {
-    testImplementation("org.springframework.boot:spring-boot-starter-test")
+    modules {
+        module("org.springframework.boot:spring-boot-starter-tomcat") {
+            replacedBy("org.springframework.boot:spring-boot-starter-jetty")
+        }
+    }
 }
 
 pluginManager.withPlugin("kotlin-conventions") {
@@ -32,11 +33,6 @@ pluginManager.withPlugin("kotlin-conventions") {
     }
 
     dependencies {
-        implementation(kotlin("reflect"))
         implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
-
-        withLibrary("mockito-kotlin") {
-            testImplementation(it)
-        }
     }
 }

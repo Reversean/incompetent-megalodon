@@ -1,6 +1,9 @@
 [versions]
+platform = "0.3.1-likholetov-indiana-jones-SNAPSHOT"
+#platform = "0.3.1-SNAPSHOT"
 kotlin = "2.0.20-Beta1"
 spring-boot = "3.3.1"
+#spring-boot = "3.1.0"
 lombok = "8.6"
 junit = "5.11.0-M2"
 testcontainers = "1.19.8"
@@ -8,22 +11,36 @@ kotest = "5.9.1"
 
 
 [libraries]
-
 gradle-kotlin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
 gradle-kotlin-spring = { group = "org.jetbrains.kotlin.plugin.spring", name = "org.jetbrains.kotlin.plugin.spring.gradle.plugin", version.ref = "kotlin" }
 gradle-kotlin-jpa = { group = "org.jetbrains.kotlin.plugin.jpa", name = "org.jetbrains.kotlin.plugin.jpa.gradle.plugin", version.ref = "kotlin" }
 gradle-spring-boot = { group = "org.springframework.boot", name = "spring-boot-gradle-plugin", version.ref = "spring-boot" }
 gradle-lombok = { group = "io.freefair.lombok", name = "io.freefair.lombok.gradle.plugin", version.ref = "lombok" }
 
+bom-platform = { group = "com.spbpu", name = "platform-dependencies", version.ref = "platform" }
 bom-junit = { group = "org.junit", name = "junit-bom", version.ref = "junit" }
 bom-testcontainers = { group = "org.testcontainers", name = "testcontainers-bom", version.ref = "testcontainers" }
 
+platform-accounts-service = { group = "com.spbpu", name = "platform-accounts-service" }
+platform-audit-service = { group = "com.spbpu", name = "platform-audit-service" }
+platform-common-core = { group = "com.spbpu", name = "platform-common-core" }
+platform-files-service = { group = "com.spbpu", name = "platform-files-service" }
+platform-i18n-service = { group = "com.spbpu", name = "platform-i18n-service" }
+platform-notifications-service = { group = "com.spbpu", name = "platform-notifications-service" }
+platform-projects-security-rbac-service = { group = "com.spbpu", name = "platform-projects-security-rbac-service" }
+platform-projects-service = { group = "com.spbpu", name = "platform-projects-service" }
+platform-security-jwt-service = { group = "com.spbpu", name = "platform-security-jwt-service" }
+platform-security-rbac-service = { group = "com.spbpu", name = "platform-security-rbac-service" }
+platform-tasks-service = { group = "com.spbpu", name = "platform-tasks-service" }
+platform-users-service = { group = "com.spbpu", name = "platform-users-service" }
+
+spring-boot-actuator = { group = "org.springframework.boot", name = "spring-boot-starter-actuator" }
+spring-boot-docker-compose = { group = "org.springframework.boot", name = "spring-boot-docker-compose" }
 spring-boot-web = { group = "org.springframework.boot", name = "spring-boot-starter-web" }
 spring-boot-webflux = { group = "org.springframework.boot", name = "spring-boot-starter-webflux" }
 spring-boot-jpa = { group = "org.springframework.boot", name = "spring-boot-starter-data-jpa" }
 spring-boot-jooq = { group = "org.springframework.boot", name = "spring-boot-starter-jooq" }
-spring-boot-actuator = { group = "org.springframework.boot", name = "spring-boot-starter-actuator" }
-spring-boot-docker-compose = { group = "org.springframework.boot", name = "spring-boot-docker-compose" }
+spring-boot-security-core = { group = "org.springframework.security", name = "spring-security-core" }
 
 postgresql = { group = "org.postgresql", name = "postgresql" }
 

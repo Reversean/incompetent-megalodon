@@ -1,15 +1,126 @@
 spring:
+  main:
+    allow-bean-definition-overriding: true
   datasource:
-#    url: ${SYSTEM_DATABASE_URL:jdbc:postgresql://localhost:15432/app_db}
-#    username: ${SYSTEM_DATABASE_USERNAME:postgres}
-#    password: ${SYSTEM_DATABASE_PASSWORD:postgres}
+    url: ${SYSTEM_DATABASE_URL:jdbc:postgresql://localhost:15432/app_db}
+    username: ${SYSTEM_DATABASE_USERNAME:postgres}
+    password: ${SYSTEM_DATABASE_PASSWORD:postgres}
     project:
       url: ${PROJECT_DATABASE_URL:jdbc:postgresql://localhost:15432/project_db}
       username: ${PROJECT_DATABASE_USERNAME:postgres}
       password: ${PROJECT_DATABASE_PASSWORD:postgres}
   liquibase:
     change-log: classpath:/db/changelog/master.yml
-  docker:
-    compose:
+
+app:
+  security:
+    account-expiration:
       enabled: true
-      file: docker-compose.yaml
+      time-in-seconds: 7776000
+      max-time-in-seconds: 7776000
+    login-attempts-limit:
+      enabled: true
+      failed-attempts-limit: 3
+      max-failed-attempts-limit: 10
+      monitoring-period-in-seconds: 60
+      disabling-period-in-seconds: 180
+    jwt:
+      secret: ${APP_JWT_SECRET:qwertyuiopasdfghjklzxcvbnm123456}
+      time-to-live-in-hours: ${APP_JWT_TTL:24}
+      access-token-time-to-live-in-seconds: ${APP_JWT_TTL:300}
+      refresh-token-time-to-live-in-seconds: ${APP_RT_TTL:86400}
+    password-requirements:
+      min-length: 8
+      max-length: 16
+      max-alphabetical-sequence-length: 5
+      max-repeat-character-length: 3
+      no-whitespace: true
+      require-special: true
+      require-digit: true
+      require-uppercase: true
+      require-lowercase: true
+      sequence-dictionary: [password, qwerty]
+      passwords-count-before-repeat: 5
+      expiration:
+        enabled: true
+        time-in-seconds: 10368000
+        max-time-in-seconds: 15552000
+  accounts:
+    noreply-email-address: ${NOREPLY_EMAIL_ADDRESS:noreply@ksrc.dev}
+    confirmation-notification:
+      type: Email
+      template-name: ${CONFIRMATION_NOTIFICATION_TEMPLATE:confirmationEmail}
+      subject: ${CONFIRMATION_NOTIFICATION_SUBJECT:Registration confirmation code}
+      activationUrl: ${CONFIRMATION_NOTIFICATION_URL:auth/registration}
+    reactivation-notification:
+      type: Email
+      template-name: ${CONFIRMATION_NOTIFICATION_TEMPLATE:reactivationEmail}
+      subject: ${CONFIRMATION_NOTIFICATION_SUBJECT:Reactivation code}
+      activationUrl: ${CONFIRMATION_NOTIFICATION_URL:auth/reactivation}
+    recovery-notification:
+      type: Email
+      template-name: ${CONFIRMATION_NOTIFICATION_TEMPLATE:recoveryEmail}
+      subject: ${CONFIRMATION_NOTIFICATION_SUBJECT:Password recovery code}
+      activationUrl: ${CONFIRMATION_NOTIFICATION_URL:auth/recovery}
+    activation-code:
+      time-to-live-in-seconds: 259200
+  audit:
+    types:
+      Connection:
+        for-admin: true
+      File:
+        for-admin: true
+      Task:
+        for-admin: false
+      ShipFactory:
+        for-admin: false
+      Authentication:
+        for-admin: true
+  groups:
+    create-root-group-on-first-run: true
+    root-id: 5ef97281-0fa0-4669-b1a9-bbc53191ba5c
+  bi:
+    main-dashboard: 5ef97281-0fa0-4669-b1a9-bbc53191ba5c
+  tasks:
+    processor-initial-delay: 10
+    processor-period: 10
+  storages:
+    local:
+      root-path: ${LOCAL_FILE_STORAGE_ROOT_PATH:storage/files/}
+    image:
+      enabled: true
+      image-max-size: ${LOCAL_IMAGE_STORAGE_IMAGE_MAX_SIZE:15000000}
+      ext:
+        max-images-for-object: ${LOCAL_IMAGE_STORAGE_MAX_IMAGES_FOR_OBJECT:10}
+        available-extensions: ${LOCAL_IMAGE_STORAGE_AVAILABLE_EXTENSIONS:png, jpg, tiff}
+      local:
+        root-path: ${LOCAL_IMAGE_STORAGE_SHIP_PROJECT_PATH:storage/images}
+  notifications:
+    email:
+      password: ${SMTP_PASSWORD:passw01d123}
+      username: ${SMTP_USERNAME:smtp}
+      host: ${SMTP_HOST:127.0.0.1}
+      port: ${SMTP_PORT:1025}
+      httpPort: ${SMTP_HTTP_PORT:8025}
+      enable-ssl: true
+  system-user:
+    enabled: false
+    id: 5ef97281-0fa0-4669-b1a9-bbc53191ba5c
+    email: ${SYSTEM_USER_NAME:system}
+    password: ${SYSTEM_USER_PASSWORD:{bcrypt}$2a$10$AXwM6m5y2BVf6hlPuLSsBeV0tNGxSnaPDQtSi9nV/QUOlaKJsSxMC}
+    firstName: Пользователь КГНЦ
+    lastName:
+  i18n:
+    default-language: ru
+    supported-languages: ru, en
+  users:
+    default-admin:
+      email: ${ROOT_USER_EMAIL:default@ksrc.ru}
+      firstName: ${ROOT_USER_FIRSTNAME:admin}
+      lastName: ${ROOT_USER_LASTNAME:admin}
+    notification-time-before-password-expiration: 259200
+    self-registration: ${USERS_SELF_REGISTRATION:false}
+  ui:
+    host: ${UI_HOST:localhost:9000}
+  cache:
+    cache-time-in-seconds: ${CACHE_TIME:600}
